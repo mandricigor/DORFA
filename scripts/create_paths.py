@@ -24,7 +24,6 @@ for x, y, z in goodb:
     aaa[(x, y)] = z  # (contig1, contig2) --> overlap
 
 
-
 with open(allSimplePaths) as f:
     guys = f.readlines()
 guys = map(lambda x: x.strip().split(), guys)

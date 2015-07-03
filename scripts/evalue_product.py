@@ -42,9 +42,9 @@ with open(outputfile, "w") as f:
         GOOD = None
         try:
             if method == "PRODUCT":
-                GOOD = float(evalue) <= float(evalue1) * float(evalue2)
+                GOOD = float(evalue) < float(evalue1) * float(evalue2)
             elif method == "MINIMUM":
-                GOOD = float(evalue) <= min(float(evalue1), float(evalue2))
+                GOOD = float(evalue) < min(float(evalue1), float(evalue2))
             if GOOD:
                 GOOD = "GOOD!!!"
             else:

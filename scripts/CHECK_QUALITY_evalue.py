@@ -66,7 +66,7 @@ with open(output_file, "w") as f:
         elif method == "MINIMUM":
             path_score = minimum(bitscores)
 
-        if bitscore <= path_score:
+        if bitscore < path_score:
             f.write("%s\t%s\t%s\t%s\t%s\n" % (id1_id2, protein, bitscore, ",".join(proteins), ",".join(map(str, bitscores))))
 
 
