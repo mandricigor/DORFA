@@ -20,7 +20,7 @@ rule=$4
 # Define some variables here:
 PYTHON=python2
 DIAMOND_BIN=/home/code/IMPORT/DIAMOND/binary/diamond
-SCRIPTS=$PWD/DORFA_SCRIPTS
+SCRIPTS=$PWD/scripts
 OVERLAP=3
 haveInternal=1
 if [ ! -f $molluskDir/internal.cds ]; then
@@ -54,19 +54,17 @@ mkdir -p $edgesDir
 mkdir -p $validationEdgesDir
 
 
-#<<'END'
 echo "1: RUNNING DIAMOND ON NONCOMPLETE ORFS"
 $DIAMOND_BIN blastx -d $database -q $molluskDir/noncomplete.cds -o $noncompleteDiamondMappingFile -t $tempDir -l1  --max-target-seqs 1
 echo "DONE"
 
 echo "2: CUTTING PIECES OF CONTIGS"
-$PYTHON $SCRIPTS/NCORFS_pieces.py 3prime.cds $molluskDir $workingDir $haveInternal
-$PYTHON $SCRIPTS/NCORFS_pieces.py 5prime.cds $molluskDir $workingDir $haveInternal
+$PYTHON $SCRIPTS/NCORFS_pieces.py 3prime.cds $molluskDir $workingDir
+$PYTHON $SCRIPTS/NCORFS_pieces.py 5prime.cds $molluskDir $workingDir
 if [ "$haveInternal" -eq 1 ]; then
-    $PYTHON $SCRIPTS/NCORFS_pieces.py internal.cds $molluskDir $workingDir $haveInternal
+    $PYTHON $SCRIPTS/NCORFS_pieces.py internal.cds $molluskDir $workingDir
 fi
 echo "DONE"
-#END
 
 
 
