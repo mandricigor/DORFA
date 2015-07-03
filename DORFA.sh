@@ -53,7 +53,6 @@ mkdir -p $mappingDir
 mkdir -p $edgesDir
 mkdir -p $validationEdgesDir
 
-
 echo "1: RUNNING DIAMOND ON NONCOMPLETE ORFS"
 $DIAMOND_BIN blastx -d $database -q $molluskDir/noncomplete.cds -o $noncompleteDiamondMappingFile -t $tempDir -l1  --max-target-seqs 1
 echo "DONE"
@@ -106,7 +105,7 @@ echo "6: FINDING GOOD EDGES"
 $PYTHON $SCRIPTS/evalue_product.py $noncompleteDiamondMappingFile $mappingDir/3prime_right_5prime_left $edgesDir/3prime_right_5prime_left $rule
 if [ "$haveInternal" -eq 1 ]; then
     $PYTHON $SCRIPTS/evalue_product.py $noncompleteDiamondMappingFile $mappingDir/3prime_right_internal_left $edgesDir/3prime_right_internal_left $rule &
-    $PYTHON $SCRIPTS/evalue_product.py $noncompleteDiamondMappingFile $mappingDir/internal_right_internal_left $edgesDir/internal_internal_internal_left $rule &
+    $PYTHON $SCRIPTS/evalue_product.py $noncompleteDiamondMappingFile $mappingDir/internal_right_internal_left $edgesDir/internal_right_internal_left $rule &
     $PYTHON $SCRIPTS/evalue_product.py $noncompleteDiamondMappingFile $mappingDir/internal_right_5prime_left $edgesDir/internal_right_5prime_left $rule &
     wait
 fi
